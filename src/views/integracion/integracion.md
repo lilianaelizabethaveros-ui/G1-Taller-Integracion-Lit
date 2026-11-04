@@ -277,7 +277,9 @@ Se llevaron a cabo pruebas analíticas y de ejecución sobre los componentes int
 
 ### Dificultades Identificadas
 
-- **Aislamiento Funcional del Componente Externo:** La falta de despacho de eventos en el botón de compra del componente de Shairr limita la interactividad funcional, impidiendo que el orquestador capture la adición de productos al carrito sin intervención adicional.
+- **Aislamiento Funcional del Componente Externo:** La falta de despacho de eventos en el botón de compra del componente de Shairr limita la interactividad funcional, impidiendo que el orquestador capture la adición de productos al carrito sin intervención adicional. Para reportar formalmente esta oportunidad de mejora al equipo compañero, se abrió el Issue técnico correspondiente en su repositorio:
+  - **Issue #5 en Shairr/Componentes-Lit-G3:** [Mejora: implementar un evento para el botón Comprar del componente tarjeta-producto](https://github.com/Shairr/Componentes-Lit-G3/issues/5)
+  - **Problema identificado:** El botón `.btn-agregar` ("Agregar al carrito" / "Comprar") se presenta visualmente con estilos `:hover` y `:active`, pero no cuenta con un escuchador de eventos ni emite un `CustomEvent` que traspase la barrera del Shadow DOM (`bubbles: true`, `composed: true`), impidiendo que el componente padre consumidor detecte la acción de compra.
 - **Divergencia de Paradigmas Reactivos:** La coordinación entre componentes puramente reactivos (Lit) y componentes basados en actualización manual del DOM (Vanilla) exige un manejo meticuloso de atributos y propiedades para evitar desincronizaciones de estado.
 
 ### Oportunidades de Mejora
